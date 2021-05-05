@@ -2,19 +2,26 @@
 
 int main()
 {
-    int ar[3] = {5, 2, 3};
-for(int i = 0; i < 3; i++)
-{
-    if(ar[i] < ar[i+1])
+    int i = 4;
+    switch(i)
     {
-        int temp = ar[i];
-        ar[i] = ar[i + 1];
-        ar[i + 1] = temp;
+        default:
+        ;
+        case 3:
+            i += 5;
+            if(i == 8)
+            {
+                i++;
+                if(i == 9) break;
+                i *= 2;
+            }
+            i -= 4;
+            break;
+        case 8:
+            i += 5;
+            break;
     }
-}
-for(int i = 0; i < 3; i++)
-{
-    printf("%d ",ar[i]);
-}
+
+    printf("i = %d\n",i);
     return 0;
 }
