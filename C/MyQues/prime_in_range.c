@@ -25,6 +25,6 @@ int mj_prime(int mj_a, int mj_b)
 
 int main()
 {
-    printf("%d\n",mj_prime(2, 10));
+    printf("%d\n",mj_prime(2, 1000));
     return 0;
 }
