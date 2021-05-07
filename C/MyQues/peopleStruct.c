@@ -23,7 +23,7 @@ void mj_print(struct people *p)
     {
         printf("SI No.        Name          Age        DOB\n");
     }
-        printf("%d             %s            %d         %d\n", i,p->name, p->age, p->dob);
+        printf("%d             %s          %d         %d\n", i,p->name, p->age, p->dob);
 }
 
 int main()
@@ -38,7 +38,7 @@ int main()
 
      for(int i = 0; i < 5; i++)
     {
-        if(!(strcmp(((p + i)->sex),"female")))
+        if(!(strcmp(((p + i)->sex),"female")) || !(strcmp(((p + i)->sex),"Female")))
         {
             mj_print(p + i);
         }
