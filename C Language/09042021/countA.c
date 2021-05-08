@@ -11,7 +11,7 @@ int main()
     {
         for(int j=0;p[i][j];j++)
         {
-            if(p[i][j]=='a')
+            if(p[i][j]=='a' || p[i][j] == 'A')
             count++;
         }
     }

@@ -63,7 +63,7 @@ int main()
     else
     printf("No odd numbers!");
      if(p)
-    printf("There are %d pos numbers.\n",p);
+    printf("There are %d positive numbers.\n",p);
     else
     printf("No pos numbers!");
      if(n)

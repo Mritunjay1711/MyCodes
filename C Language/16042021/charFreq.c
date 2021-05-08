@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
 
 int freqChar(char *str,char ch)
 {
@@ -22,7 +23,6 @@ int main()
 
     printf("Enter the string:");
     gets(str);
-    scanf("%c",&ch);
     printf("Enter the charcter to find frequency:");
     scanf("%c",&ch);
 
@@ -31,7 +31,7 @@ int main()
     if(i)
     printf("%c is %d times in the string\n",ch,i);
     else
-    printf("%c not found!");
+    printf("Not found!");
 
     return 0;
 }

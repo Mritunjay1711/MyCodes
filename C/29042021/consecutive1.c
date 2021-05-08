@@ -34,6 +34,6 @@ int main()
         }
     }
 
-    printf("The most occurence of 1 is at %d position and  %d times.\n", old_pos + 1, old_count + 1);
+    printf("The most occurence of 1 is at %d position and  %d times.\n", old_pos + 1, old_count);
     return 0;
 }

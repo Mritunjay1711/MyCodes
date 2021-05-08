@@ -16,7 +16,7 @@ int main()
     e2.age = e1.age;
     strcpy(e2.name, e1.name);
 
-    printf("%s %d %.2f", e2.name, e2.age, e2.salary);
+    printf("%s %d %.2f\n", e2.name, e2.age, e2.salary);
 
     return 0;
 }
