@@ -15,6 +15,6 @@ int main()
 
     printf("Enter the name, price and pages of the book b1:");
     scanf("%s %f %d", ptr->name, &ptr->price, &ptr->pages);
-    printf("The input given by you was: %s %.2f %d.", ptr->name, ptr->price, ptr->pages);
+    printf("The input given by you was: %s %.2f %d.\n", ptr->name, ptr->price, ptr->pages);
     return 0;
 }
