@@ -1,6 +1,6 @@
 #include<stdio.h>
 
-int mj_prime(int mj_a, int mj_b)
+void mj_prime(int mj_a, int mj_b)
 {
     int mjcount = 0;
     for(int i = mj_a; i <= mj_b; i++)
@@ -17,14 +17,17 @@ int mj_prime(int mj_a, int mj_b)
 
         }
         if(flag == 1)
-        mjcount++;
+        printf("%d ", i);
     }
-    return mjcount;
+    printf("\n");
+    
 }
 
 
 int main()
 {
-    printf("%d\n",mj_prime(2, 1000));
+    char c = 'm';
+    int a = c;
+    mj_prime(a - 30, a + 20);
     return 0;
 }
