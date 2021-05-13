@@ -1,9 +1,9 @@
 #include<stdio.h>
 
-void mj_prime(int mj_a, int mj_b)
+void prime(int *a, int *b, int *ans,int *count)
 {
-    int mjcount = 0;
-    for(int i = mj_a; i <= mj_b; i++)
+    int k = 0;
+    for(int i = *a; i <= *b; i++)
     {
          int flag = 1;
         for(int j = 2; j < i; j++)
@@ -17,17 +17,28 @@ void mj_prime(int mj_a, int mj_b)
 
         }
         if(flag == 1)
-        printf("%d ", i);
+        {
+            *(ans + k) = i;
+            k++;
+        }
+        
     }
-    printf("\n");
+    *count = k;
     
 }
 
 
 int main()
 {
-    char c = 'm';
-    int a = c;
-    mj_prime(a - 30, a + 20);
+    int n1, n2, ans[1000],count = 0;
+    
+    printf("Enter the number in between you want the prime: ");
+    scanf("%d %d", &n1, &n2);
+    prime(&n1, &n2, ans, &count);
+    for(int i = 0; i < count; i++)
+    {
+        printf("%d ",ans[i]);
+    }
+    printf("\nThere are %d prime number.",count);
     return 0;
 }
