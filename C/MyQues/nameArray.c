@@ -10,7 +10,10 @@ int main()
 
     for(int i = 0; mr_name[i] != '\0'; i++)
     {
-        mr_lch = mr_name[i] - 32;
+        if(mr_name[i] >= 'a' && mr_name[i] <= 'z')
+            mr_lch = mr_name[i] - 32;
+        else
+            mr_lch = mr_name[i];
     }
 
     // printf("%c\n",mr_lch);
@@ -22,6 +25,11 @@ int main()
             mr_nameCopy[k] = mr_name[i]; 
             k++;
         }
+        else
+        {
+            mr_nameCopy[k] = mr_lch;
+            k++;
+        }
        
         if(mr_name[i] == 'a' || mr_name[i] == 'A' || mr_name[i] == 'e' || mr_name[i] == 'E' || mr_name[i] == 'i' || mr_name[i] == 'I' || mr_name[i] == 'o' || mr_name[i] == 'O' || mr_name[i] == 'u' || mr_name[i] == 'U')
         {
@@ -31,11 +39,7 @@ int main()
                 k++;
             }
         }
-        if(mr_name[i] == ' ')
-        {
-            mr_nameCopy[k] = mr_lch;
-            k++;
-        }
+        
     }
     mr_nameCopy[k] = '\0';
     printf("%s\n",mr_nameCopy);
