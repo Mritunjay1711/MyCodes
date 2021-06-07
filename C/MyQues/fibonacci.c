@@ -36,7 +36,7 @@ int mr_fibonacci(int n)
 
 int main()
 {
-    int mr_m = 7, mr_n = 16, mr_fibArr[100], mr_len = mr_n - mr_m + 1, mr_j = 0, mr_sum = 0;
+    int mr_m = 1, mr_n = 14, mr_fibArr[100], mr_len = mr_n - mr_m + 1, mr_j = 0, mr_sum = 0;
 
     // int mr_m = 1, mr_n = 10;
     for(int i = mr_m; i <= mr_n; i++)

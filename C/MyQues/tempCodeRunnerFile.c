@@ -1,7 +1,23 @@
-abd 42 17/07/3
-koh  3 2/3/2
-b 43 2/3/4
-kdf 3 4/4/4
-sk 29 4/4/4
-shd 30 4/4/4
-kj 4 4/4/4
+int mr_fibonacci(int n)
+{
+    int mr_n1 = 0, mr_n2 = 1, mr_nextnum = mr_n1 + mr_n2;
+    if(n == 1)
+    return 0;
+    if(n == 2)
+    return 1;
+    if(n ==3)
+    return 1;
+    else
+    {
+        while(n - 3)
+        {
+
+            mr_n1 = mr_n2;
+            mr_n2 = mr_nextnum;
+            mr_nextnum = mr_n1 + mr_n2;
+            n--;
+        }
+    }
+      
+    return mr_nextnum;
+}
