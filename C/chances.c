@@ -2,34 +2,21 @@
 
 int main()
 {
-    int a, b, c, d, f, y, n, ans;
+    int a, b, c, d, n, ans;
 
     scanf("%d %d %d", &a, &b, &n);
 
-    y = n/2;
-    f = n - y;
-
-    // In case there is no increment
+    for(int i = 1; i <= n; i++)
+    {
+        if(i % 2)
+            a *= 2;
+        else
+            b *= 2;
+    }
     c = a;
     d = b;
-
-
-    while(f)
-    {
-        c = a * 2;
-        f--;
-    }
-
-    while(y)
-    {
-        d = b * 2;
-        y--;
-    }
     
-    if(c > d)
-        ans = c/d;
-    else
-        ans = d/c;
+    ans = (c/d) ? (c/d) : (d/c);
 
     printf("%d\n", ans);
 
