@@ -16,13 +16,13 @@ int main()
     a[0].i = 10;
     a[1].i = 20;
     a[0].c = b;
-    x = (++p)->i;
+    x = ++p->i;
     y = (++p)->i;
     z = (p++)->i;
-    r = *p->c;
-    s = *p->c++;
-    t = (*p->c)++;
-    u = (p++)->i;
+    // r = *p->c;
+    // s = *p->c++;
+    // t = *(p->c)++;
+    // u = (p++)->i;
     printf("x = %d\ny = %d\nz = %d\nr = %d\ns = %d\nt = %d\nu = %d\n", x, y, z, r, s, t, u);
    
     
