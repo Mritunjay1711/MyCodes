@@ -21,11 +21,11 @@ int main()
         printf("Enter the details of Student%d\n", i);
 
         printf("Enter  Roll no\n ");
-        scanf("%d", &(s+i)->roll);
+        scanf("%d", &(s + i)->roll);
         printf("Enter the cgpa\n ");
-        scanf("%f", &(s+i)->cgpa);
+        scanf("%f", &(s + i)->cgpa);
         printf("Enter the age\n ");
-        scanf("%d", &(s+i)->age);
+        scanf("%d", &(s + i)->age);
     }
     //    for(int i=1;i<=2;i++)
     // {
