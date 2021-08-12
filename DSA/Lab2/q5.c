@@ -1,5 +1,5 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 void swap(int *a, int *b)
 {
@@ -10,34 +10,34 @@ void swap(int *a, int *b)
 
 int main()
 {
-    int n, *arr;
+    int n, *arr, count = 0;
     printf("Enter the number of elements: ");
     scanf("%d", &n);
 
     arr = (int *)malloc(n * sizeof(int));
 
-    for(int i = 0; i < n; i++)
+    for (int i = 0; i < n; i++)
     {
         printf("Enter the element %d: ", i + 1);
         scanf("%d", (arr + i));
     }
 
-    for(int i = 0; i < n; i = i + 2)
+    for(int i = 0; i < n; i++)
     {
-        if(*(arr + i + 1) % 2 != 1)
+        if(arr[i] % 2 == 0)
+            count++;
+    }
+
+    for(int i = 0; i < count; i++)
+    {
+        for(int j = i + 1; j < n; j++)
         {
-            int j = i + 2;
-            while (*(arr + j) % 2 != 1)
-            {
-                if(j >= n)
-                    break;
-                j++;
-            }
-            swap((arr + i + 1), (arr + j));
+            if(arr[j] % 2 == 0)
+                swap(&arr[i], &arr[j]); 
         }
     }
 
-    for(int i = 0; i < n; i++)
+    for (int i = 0; i < n; i++)
     {
         printf("%d ", *(arr + i));
     }
