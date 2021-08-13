@@ -5,15 +5,14 @@
 int main()
 {
     int *arr, n, sum = 0;
-    double *deviation, *sqrDeviation;
+    double sumSqr, stdDeviation;
     float mean;
 
     printf("Enter the number of elements: ");
     scanf("%d", &n);
 
     arr = (int *)malloc(n * sizeof(int));
-    deviation = (double *)malloc(n * sizeof(double));
-    sqrDeviation = (double *)malloc(n * sizeof(double));
+    
 
     for(int i = 0; i < n; i++)
     {
@@ -26,16 +25,11 @@ int main()
 
     for(int i = 0; i < n; i++)
     {
-        *(deviation + i) = *(arr + i) - mean;
-        *(sqrDeviation + i) = pow(*(deviation + i), 2);
-        sqrSum += *(sqrDeviation + i);
+        sqrSum += pow((arr[i] - mean), 2);
     }
-    double standardDeviation = sqrSum/n;
-    standardDeviation = sqrt(standardDeviation);
-    printf("Standard Deviation = %.2lf\n", standardDeviation);
+    stdDeviation = sqrt((sqrSum/n));
+    printf("Standard Deviation = %.2lf\n", stdDeviation);
 
     free(arr);
-    free(deviation);
-    free(sqrDeviation);
     return 0;
 }

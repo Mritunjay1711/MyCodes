@@ -1,6 +1,10 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+int modulus(int a)
+{
+    return (a > 0) ? a : -1 * a;
+}
 
 int main()
 {
@@ -24,9 +28,9 @@ int main()
         {
             if(arr[i] == x && arr[j] == y)
             {
-                if((i - j) < dis && (i - j) > 0)
+                if(modulus(j - i) < dis)
                 {
-                    dis = i - j;
+                    dis = modulus(j - i);
                 }
             }
         }
