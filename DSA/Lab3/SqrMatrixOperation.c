@@ -23,7 +23,7 @@ void print(int *arr[], int r)
     {
         for(int j = 0; j < r; j++)
         {
-            printf("%d ", arr[i][j]);
+            printf("%2d ", arr[i][j]);
         }
         printf("\n");
     }
@@ -74,7 +74,7 @@ void disBelowDiagonal(int *arr[], int r)
         {
             if(j > r - i - 1)
             {
-                printf("%d ", arr[i][j]);
+                printf("%2d ", arr[i][j]);
             }
             else
                 printf("  ");
