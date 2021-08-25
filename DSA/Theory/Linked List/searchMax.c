@@ -18,7 +18,7 @@ struct node *createNode(int data)
 
 void traversal(struct node *head)
 {
-    while(head)
+    while (head)
     {
         printf("%d-->", head->data);
         head = head->next;
@@ -26,54 +26,59 @@ void traversal(struct node *head)
     printf("NULL\n");
 }
 
-void display(struct node *head)
+int searchMax(struct node *head)
 {
-    if(head)
+    int max = 0;
+    while (head)
     {
-        printf("%d-->", head->data);
-        display(head->next);
+        if(max < head->data)
+            max = head->data;
+        head = head->next;
     }
+    return max;
 }
 
-void displayReverse(struct node *head)
+int searchMin(struct node *head)
 {
-    if(head)
+    int min = head->data;
+    while (head)
     {
-        displayReverse(head->next);
-        printf("%d-->", head->data);
+        if(min > head->data)
+            min = head->data;
+        head = head->next;
     }
+    return min;
 }
 
 int main()
 {
-    int a, data;
     struct node *head = NULL, *t;
+    int a, data;
     printf("Enter the number of nodes: ");
     scanf("%d", &a);
+
     printf("Enter the data: ");
     scanf("%d", &data);
     t = createNode(data);
     head = t;
+
     do
     {
         printf("Enter the data: ");
         scanf("%d", &data);
         t = createNode(data);
         struct node *w = head;
-        while (w->next != NULL)
+        while(w->next)
         {
             w = w->next;
         }
         w->next = t;
         a--;
-    } while (a - 1);
 
-    // traversal(head);
-    // display(head);
-    // printf("NULL\n");
-    displayReverse(head);
-    printf("NULL\n");
+    }while(a - 1);
+
+    traversal(head);
+    printf("Maximum element present in list is %d\n", searchMax(head));
+    printf("Minimum element present in list is %d\n", searchMin(head));
     return 0;
 }
-
-// |    |---->|    |---->|    |---->|    |---->|    |---->|    |---->NULL
