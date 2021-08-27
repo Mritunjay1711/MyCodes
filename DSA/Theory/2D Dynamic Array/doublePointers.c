@@ -3,7 +3,7 @@
 
 int **allocate(int r, int c)
 {
-    int **p = (int **)malloc(r * sizeof(int *));
+    int **p = (int **)malloc(r * sizeof(int *));//*p[r]
     for(int i = 0; i < r; i++)
     {
         p[i] = (int *)malloc(c * sizeof(int));

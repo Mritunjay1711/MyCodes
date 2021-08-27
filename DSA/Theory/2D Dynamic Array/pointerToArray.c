@@ -14,21 +14,22 @@ int main()
     printf("Enter the no of rows: ");
     scanf("%d", &n);
     q = (int(*)[5])malloc(n * 5 * sizeof(int));
-    // &q[i][j]
+    
     for(int i = 0; i < n; i++)
     {
         for(int j = 0; j < 5; j++)
         {
-            scanf("%d", (*(q + i) + j));
+            scanf("%d", (*(q + i) + j));// &q[i][j]
         }
     }
     for(int i = 0; i < n; i++)
     {
         for(int j = 0; j < 5; j++)
         {
-            printf("%d ", *(*(q + i) + j));
+            printf("%d ", *(*(q + i) + j));//q[i][j]
         }
         printf("\n");
     }
     return 0;
 }
+
