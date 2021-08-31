@@ -1,91 +1,104 @@
 #include<iostream>
-#include<stdio.h>
-
-#include<cstring>
 #include<string.h>
-
 using namespace std;
-class item
-{
-    private:
-        char code[50];
-        char name[50];
-        float price,total;
-        int quantity;
-        static int count;
-    public:
-	void input( char *c, char *n, float p, int q, float t )
-	{
-    strcpy(code,c);
-	strcpy(name,n);
-	price=p;
-	quantity=q;	
-	total=t;
-	}
-	void display()
-	{     
-	 cout<<count++<<"\t\t"<<code<<"\t\t"<<name<<"\t\t"<<price<<"\t\t"<<quantity<<"\t\t"<<total<<endl;
-	 cout<<"--------------------------------------------------------------------------------------"<<endl;
-	  
-//cout<<"SL.No"<<""<<"Code"<<""<<"Name"<<""<<"Price"<<""<<"Quantity"<<""<<"Total"<<endl;
-	  
-	}
 
-	friend void cal(item *p, int a);   
-	
+class book
+{
+    char *author;
+    char *title;
+    int price;
+    char *publisher;
+    int stock;
+    public:
+
+    void getdata(char *au, char *ti, int p, char *pub, int st)
+    {
+        author = new char[strlen (au) + 1]; 
+        strcpy(author,au);
+        title = new char[strlen (ti) + 1];
+        strcpy(title,ti);
+        price = p;
+        publisher = new char[strlen (pub) + 1];
+        strcpy(publisher,pub);
+        stock = st;
+    }
+
+        void display()
+        {
+            cout << "\n------ The details of book are ---------\n";
+            cout << "Author: " << author << endl;
+            cout << "Title: " << title << endl;
+            cout << "Price: " << price << endl;
+            cout << "Publisher: " << publisher << endl;
+            cout << "Stock: " << stock << endl;
+        }
+
+    friend void search( book *b, int n, char *au, char *ti);
+
 };
 
-int item :: count;
-
-void cal(item *p, int a)
-{
-    double x;
-    for(int i = 0; i < 2; i++)
+    void search( book *b, int n, char *au, char *ti)
     {
-        x += p[i].total;
+        for (int i = 0; i < n; i++)
+        {
+            if (strcmp(b[i].author,au)==0  && strcmp(b[i].title,ti)==0 )
+            {
+                b[i].display();
+
+                int no;
+                cout<<"Enter the number of copies : "<<endl;
+                cin>>no;
+
+                if (b[i].stock>=no)
+                {
+                    int bill = no * b[i].price;
+                    cout<<"The Total Bill is: Rs "<<bill<<endl;
+                }
+                else
+                {
+                cout<<" Requested copies not in stock "<<endl;    
+                }
+                return;
+            }
+        }
+        cout<<"Requested Book is currently unavailable !"<<endl;
     }
-    cout<<"\t\t\t\t\t\t\t\t\t\t\t\t\t\t      Total Bill = "<<x<<endl;
-}
 
-int main()
-{
-	item p[100];
-	int i,qtity;
-	float pr,tot;
-	char a[50],b[10];
-	
-	
-	for(i=0;i<2;i++)
+
+int main(){
+    
+    char auth[30], tit[50], publish[30];
+    int prc, stc;
+    int n;
+    cout<<" Enter the number of books: "<<endl;
+    cin>> n;
+    book b[n];
+    for (int i = 0; i < n; i++)
     {
-    cout<<"Enter the code= "<<endl;
-    cin>>b;
-    cout<<"Enter the name of the item "<<i+1<<" = ";
+        cout << "Enter the name of author: ";
+        getchar();
+        gets(auth);
+        cout << "Enter the name of book: ";
+        gets(tit);
+        cout << "Enter the price of book: ";
+        cin >> prc;
+        cout << "Enter the name of publisher: ";
+        getchar();
+        gets(publish);
+        cout << "Enter the stock present: ";
+        cin >> stc;
+        b[i].getdata(auth, tit, prc, publish, stc);
+    }
+
+    for(int i = 0; i < n; i++)
+        b[i].display();
+    char sAuthor[30] ,sTitle[30];
+    cout << "Enter the name of author to search: ";
     getchar();
-    gets(a);
-    //scanf("%[^/n]s",a);
-    cout<<"Enter the price= "<<endl;
-    cin>>pr;
-    cout<<"Enter the quantity= "<<endl;
-    cin>>qtity;
-    cout<<"Enter the total= "<<endl;
-    cin>>tot;
-     p[i].input(b,a,pr,qtity,tot);
-    }
-    
-    cout<<"Sl No.\t\t";
-    cout<<"Code";
-    cout<<"\tName of items";
-    cout<<"\titem price ";
-    cout<<"\t\tQuantity ";
-    cout<<"\tTotal"<<endl;
-    cout<<"--------------------------------------------------------------------------------------"<<endl;
-    
-    for(int i = 0; i < 2; i++)
-    {
-        p[i].display();
-    }
-    
-       
-    cal(p, 2);
-        
+    gets(sAuthor);
+    cout << "Enter the name of book to search: ";
+    gets(sTitle);
+    search(b, n, sAuthor, sTitle);
+
+    return 0;
 }
