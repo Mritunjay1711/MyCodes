@@ -69,7 +69,7 @@ void addPolynomial(node *pol1, node *pol2, node *addPoly)
         }
         else
         {
-            addPoly->degree = pol1->degree + pol2->degree;
+            addPoly->degree = pol1->degree;
             addPoly->coeff = pol1->coeff + pol2->coeff;
             pol1 = pol1->next;
             pol2 = pol2->next;
