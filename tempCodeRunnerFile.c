@@ -1,114 +1,61 @@
-#include<stdio.h>
-#include<malloc.h>
-#include<string.h>
-struct stack
+#include <iostream>
+using namespace std;
+class length
 {
-  int size;
-  int top;
-  char * arr;
-};
-void push(struct stack **s,char data)
-{ 
-    if(is_full(*s))
-    printf("\nStack Overflow!!");
-    else
-    {   (*s)->top++;
-         (*s)->arr[(*s)->top] = data;
-    }
-}
-char pop(struct stack **s)
-{
-    if(is_empty(*s))
-     printf("Stack Overflow!!");
-     else
-     {
-         char val = (*s)->arr[(*s)->top];
-          (*s)->top--;
-          return val;
-     }
-}
-int is_empty(struct stack*s)
-{
-    if(s->top == -1)
-    return 1;
-    return 0;
-}
-int is_full(struct stack *s)
-{
-    if(s->top == s->size -1)
-    return 1;
-    return 0;
-}
-char stack_top(struct stack*s)
-{
-    return s->arr[s->top];
-}
-int is_operator(char a)
-{
-    if(a == '+' || a == '-' || a == '/' || a == '*')
-     return 1;
-     else
-     return 0;
-}
-int precedence(char a)
-{
-    if(a == '-' ||  a == '+')
-    return 2;
-   if(a == '*' || a == '/' )
-    return 3;
-    else 
-    return 0;
-} 
-char * infix_to_postfix(char *infix)
-{
-    struct stack *s1;
-    s1 = (struct stack*)malloc(sizeof(struct stack));
-    s1->size = 100;
-    s1->top = -1;
-    s1->arr = (char*)malloc(s1->size*sizeof(char));
-    char * postfix = (char*)malloc(strlen(infix +1)*sizeof(char));
-    int i = 0;
-    int j = 0;
-    while(infix[i] != '\0')
+    int feet;
+    int inches;
+    static int count;
+
+public:
+    length(int a, int b)
     {
-        if(!is_operator(infix[i]))
-        {
-           postfix[j] = infix[i];
-           i++;
-           j++;
-        }
-        else
-        {
-            if(precedence(infix[i]) > precedence(stack_top(s1)))
-            {
-                push(&s1,infix[i]);
-            i++;
-            }
-            else 
-            {
-                postfix[j] = pop(&s1);
-                j++;
-            }
-
-        }
+        feet = a;
+        inches = b;
+        ++count;
     }
-             while(!is_empty(s1))
-             {   
-                 postfix[j] = pop(&s1);
-                 j++;
-             }
-            
-            postfix[j] = '\0';
-             
-             return postfix;
+    // length(const length &p)
+    // {
+    //     feet = p.feet;
+    //     inches = p.inches;
+    //     count++;
+    // }
+    void display()
+    {
+        cout << "larger length is " << feet << " feet and " << inches <<" inches "<< endl;
+    }
+    static void print()
+    {
+        cout<<"the no of object created is "<<count<<endl;
+    }
+    
+    friend void compare(length p, length q);
+     ~length()
+     {
+         cout<<"oject no destroyed is "<<count--<<endl;
+     }
 
+};
+void compare(length p, length q)
+{
+    float d1 = p.feet + (p.inches) * 0.0833;
+    float d2 = q.feet + (q.inches) * 0.0833;
+    if (d1 > d2)
+        p.display();
+    q.display();
 }
+
+int length::count=0;
 int main()
 {
-    char *infix,*postfix;
-    infix= (char*)malloc(40*sizeof(char));
-    printf("\nEnter the expression ");
-    scanf("%s",infix);
-    postfix = infix_to_postfix(infix);
-    printf("\n %s",postfix);
+    int f1, i1, f2, i2;
+    cout << "enter length 1" << endl;
+    cin >> f1 >> i1;
+    cout << "enter length 2" << endl;
+    cin >> f2 >> i2;
+    length l1(f1, i1);
+    length l2(f2, i2);
+    compare(l1, l2);
+    length::print();
+
+    return 0;
 }
