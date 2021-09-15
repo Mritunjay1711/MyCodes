@@ -77,6 +77,14 @@ void reverseRecur(node *s)
     }
 }
 
+// Function to delete previous node without traversal
+void delete(node *top)
+{
+    top->prev = top->prev->prev;
+    free(top->prev->next);
+    top->prev->next = top;
+}
+
 int main()
 {
     node *t;
@@ -91,6 +99,10 @@ int main()
         createNode(head, data);
     }
 
+    traversal(head);
+    node *ptr = head->next->next; // 3rd node
+    delete(ptr);  // Delete ptr->prev
+    traversal(head);
     int j;
     do
     {
