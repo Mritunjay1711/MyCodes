@@ -45,9 +45,24 @@ void traversal(node *s)
     printf("NULL\n");
 }
 
-void reverse(node *s)
+void reverse()
 {
-   
+    node *temp = NULL;
+    node *curr = head;
+
+    while(curr)
+    {
+        temp = curr->prev;
+        curr->prev = curr->next;
+        curr->next = temp;
+
+        curr = curr->prev;
+    }
+
+    if(temp != NULL)
+    {
+        head = temp->prev;
+    }
 }
 
 int main()
@@ -64,7 +79,7 @@ int main()
         createNode(head, data);
     }
     traversal(head);
-    
+    reverse();
     traversal(head);
     return 0;
 }

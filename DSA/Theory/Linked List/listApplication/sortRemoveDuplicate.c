@@ -36,41 +36,61 @@ int countNode(node *head)
     return count;
 }
 
+void sort(node *head)
+{
+    node *ptr;
+    int temp;
+    while(head)
+    {
+        ptr = head->next;
+        while(ptr)
+        {
+            if(head->data > ptr->data)
+            {
+                temp = head->data;
+                head->data = ptr->data;
+                ptr->data = temp;
+            }
+            ptr = ptr->next;
+        }
+        head = head->next;
+    }
+}
 
+
+//Removing duplicates from Singly Linked list
 void removeDuplicate(node *head)
 {
-    node *p = head;
-    node *q = head->next, *w;
-    while(p)
+    node *r, *prev, *s;
+    
+    for(r = head; r != NULL; r = r->next)
     {
-        while(q && p->data != q->data)
+        prev = r;
+        for(s = r->next; s != NULL;)
         {
-            w = q;
-            q = q->next;
-        }
-        if(q == NULL)
-        {
-            p = p->next;
-            if(p != NULL)
+            if(r->data == s->data)
             {
-                q = p->next;
+                prev->next = s->next;
+                free(s);
+                s = prev->next;
+            }
+            else
+            {
+                prev = s;
+                s = s->next;
             }
         }
-        else if(p->data == q->data)
-        {
-            w->next = q->next;
-            node *temp = q;
-            if(q->next)
-                q = q->next;
-            free(temp);
-        }
     }
+    
 }
 
 int main()
 {
     node* head = NULL, *t;
     int a, data;
+
+    printf("Enter the number of nodes: ");
+    scanf("%d", &a);
 
     printf("Enter the data for the node: ");
     scanf("%d", &data);
@@ -87,12 +107,13 @@ int main()
             w = w->next; 
         }
         w->next = t;
-        printf("Enter 1 to add node or 0 to stop: ");
-        scanf("%d", &a);
-    }while(a);
+        a--;
+    }while(a - 1);
 
     traversal(head);
     removeDuplicate(head);
+    traversal(head);
+    sort(head);
     traversal(head);
     return 0;
 }

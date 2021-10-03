@@ -45,49 +45,81 @@ void traversal(node *s)
     printf("NULL\n");
 }
 
-void sort(node *s)
-{
+// void sort(node *s)
+// {
     
-    int swapped, i;
-    node *w;
+//     int swapped, i;
+//     node *w;
   
-    if (s == NULL)
-        return;
+//     if (s == NULL)
+//         return;
   
-    do
+//     do
+//     {
+//         swapped = 0;
+//         w = s;
+  
+//         while (w->next != NULL)
+//         {
+//             if (w->data > w->next->data)
+//             {
+//                 int temp = w->data;
+//                 w->data = w->next->data;
+//                 w->next->data = temp;
+//                 swapped = 1;
+//             }
+//             w = w->next;
+//         }
+//     }
+//     while (swapped);
+// }
+
+void sort(node *head)
+{
+    node *ptr;
+    int temp;
+    while(head)
     {
-        swapped = 0;
-        w = s;
-  
-        while (w->next != NULL)
+        ptr = head->next;
+        while(ptr)
         {
-            if (w->data > w->next->data)
+            if(head->data > ptr->data)
             {
-                int temp = w->data;
-                w->data = w->next->data;
-                w->next->data = temp;
-                swapped = 1;
+                temp = head->data;
+                head->data = ptr->data;
+                ptr->data = temp;
             }
-            w = w->next;
+            ptr = ptr->next;
         }
+        head = head->next;
     }
-    while (swapped);
 }
 
-void removeDuplicate(node *q)
+// Removing duplicates from doubly linked list
+void removeDuplicate(node *head)
 {
-    node *w;
-    while(q)
+    node *r, *prev, *s;
+    
+    for(r = head; r != NULL; r = r->next)
     {
-        if(q->next != NULL && q->data == q->next->data)
+        prev = r;
+        for(s = r->next; s != NULL;)
         {
-            w = q->next;
-            q->next = w->next;
-            w->next->prev = q;
-            free(w);
+            if(r->data == s->data)
+            {
+                prev->next = s->next;
+                s->next->prev = prev;
+                free(s);
+                s = prev->next;
+            }
+            else
+            {
+                prev = s;
+                s = s->next;
+            }
         }
-        q = q->next;
     }
+    
 }
 
 int main()
@@ -108,6 +140,7 @@ int main()
     sort(head);
     traversal(head);
     removeDuplicate(head);
+    // printf("%d\n", head->next->next->prev->data);
     traversal(head);
     return 0;
 }
