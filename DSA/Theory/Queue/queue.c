@@ -1,84 +1,70 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-typedef struct circularQueue
-{
+typedef struct Queue{
     int f;
     int r;
     int size;
     int *arr;
 }Queue;
 
-int isEmpty(Queue q)
+int isFull(Queue *q)
 {
-    if(q.r == -1 && q.f == -1)
-        return 1;
-    else
-        return 0;
+    return (q->r == q->size -1);
 }
 
-int isFull(Queue q)
+int isEmpty(Queue *q)
 {
-    if((q.r + 1) % q.size == q.f)
-        return 1;
-    else
-        return 0;
+    return (q->f == -1 && q->r == -1);
 }
 
-
-void traversal(Queue *q)
+void enqueue(Queue *q, int element)
 {
-    for(int i = q->f; i != q->r; i = (i+1)%q->size)
+    if(isFull(q))
     {
-        printf("%d ", q->arr[i]);
+        printf("Queue Overflow!\n");
     }
-    printf("%d\n", q->arr[q->r]);
-}
-
-void enqueue(Queue *q, int data)
-{
-    if(isFull(*q))
+    else if(isEmpty(q))
     {
-        printf("Queue is full!\n");
-    }
-    else if (isEmpty(*q))
-    {
-        q->r = q->f = 0;
-        q->arr[q->r] = data;
-        printf("%d enqueued!\n", data);
+        q->f = q->r = 0;
+        q->arr[q->r] = element;
+        printf("%d enqueued!\n", element);
     }
     else
     {
-        q->r = (q->r + 1) % q->size;
-        q->arr[q->r] = data;
-        printf("%d enqueued!\n", data);
+        q->r++;
+        q->arr[q->r] = element;
+        printf("%d enqueued!\n", element);
     }
 }
 
 void dequeue(Queue *q)
 {
-    if(isEmpty(*q))
+    if(isEmpty(q))
     {
-        printf("Queue is empty\n");
-    }
-    else if(q->r == 0 && q->f == 0)
-    {
-        printf("Dequeued element %d\n", q->arr[q->f]);
-        q->r = q->f = -1;
+        printf("Queue is empty!\n");
     }
     else
     {
-        printf("Dequeued element %d\n", q->arr[q->f]);
-        q->f = (q->f + 1) % q->size;
+        printf("%d dequeued!\n", q->arr[q->f++]);
     }
-    
+}
+
+void traversal(Queue *q)
+{
+    for(int i = q->f; i <= q->r; i++)
+    {
+        printf("%d ", q->arr[i]);
+    }
+    printf("\n");
 }
 
 int main()
 {
     Queue *q = (Queue*)malloc(sizeof(Queue));
-    q->r = q->f = -1;
-    q->size = 5;
+    q->f = q->r = -1;
+    printf("Enter the size of queue: ");
+    scanf("%d", &q->size);
     q->arr = (int*)malloc(q->size * sizeof(int));
     int a;
     do
@@ -90,7 +76,7 @@ int main()
         {
         case 1:
         {
-            if(isEmpty(*q))
+            if(isEmpty(q))
                 printf("Queue is empty!\n");
             else
                 printf("Queue is not empty!\n");
@@ -98,7 +84,7 @@ int main()
         }
         case 2:
         {
-            if(isFull(*q))
+            if(isFull(q))
                 printf("Queue is Full!\n");
             else
                 printf("Queue is not Full!\n");
@@ -124,6 +110,6 @@ int main()
         }
 
         }
-    }while(a);
+    }while(a); 
     return 0;
 }
