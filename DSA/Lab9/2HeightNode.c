@@ -77,8 +77,8 @@ int main()
 {
     node *r = createNode(10);
     node *l1 = createNode(9);
-    node *l2 = createNode(1);
     node *r1 = createNode(2);
+    node *l2 = createNode(1);
     node *r2 = createNode(8);
     node *l3 = createNode(6);
     node *r3 = createNode(7);
@@ -99,7 +99,7 @@ int main()
         1  8  6   7
     */
    postOrder(r);
-   printf("\n%d", heightTree(r) - 1);
-   printf("\n%d", nodes(r));
+   printf("\nHeight: %d", heightTree(r) - 1);
+   printf("\nNumber of nodes: %d", nodes(r));
     return 0;
 }
