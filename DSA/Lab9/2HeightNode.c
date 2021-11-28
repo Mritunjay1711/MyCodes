@@ -101,5 +101,7 @@ int main()
    postOrder(r);
    printf("\nHeight: %d", heightTree(r) - 1);
    printf("\nNumber of nodes: %d", nodes(r));
+   printf("\nNumber of nodes in left subtree: %d", nodes(r->left));
+   printf("\nNumber of nodes in right subtree: %d", nodes(r->right));
     return 0;
 }

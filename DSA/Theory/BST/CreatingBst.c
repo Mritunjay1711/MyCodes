@@ -56,6 +56,8 @@ node *createBST(node *root, int key)
     }
 }
 
+
+
 void preOrder(node *root)
 {
     if (root)

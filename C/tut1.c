@@ -1,29 +1,21 @@
 #include<stdio.h>
+#include<string.h> 
 
- int saveThePrisoner(int n, int m, int s) {
-    if(m > n)
-        m %= n;
-    int ans = (s + m - 1);
-    if(ans > n)
-        return ans - n;
-    else 
-        return ans;
+char *reverse(char *str);
+
+int main(){
+    char str[]="Akshat";
+    printf("The reversed string is: %s", reverse(str));
+    return 0;
 }
 
-int main()
-{
-    int arr[100], n, m, s;
-    int x;
-    scanf("%d", &x);
-    for(int i = 0; i < x; i++)
-    {
-        scanf("%d %d %d", &n, &m, &s);
-        arr[i] = saveThePrisoner(n, m, s);
+char *reverse(char *str){
+    static char result[20];
+    int length=strlen(str);
+    int i=0;
+    while(i<length){
+        result[i]=str[length-i-1];
+        i++;
     }
-    for(int i = 0; i < x; i++)
-    {
-        printf("%d\n", arr[i]);
-    }
-
-    return 0;
+    return result;
 }
