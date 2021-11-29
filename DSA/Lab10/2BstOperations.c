@@ -200,6 +200,19 @@ void NodesAtMaxDepth(BSTnode *root, int k)
     NodesAtMaxDepth(root->right, k-1);
 }
 
+void nodesAtKthLevel(BSTnode *root, int k)
+{
+    if(root == NULL || k < 0)
+        return;
+    if(k == 0)
+    {
+        printf("%d ", root->data);
+        return;
+    }
+    nodesAtKthLevel(root->left, k-1);
+    nodesAtKthLevel(root->right, k-1);
+}
+
 void preOrder(BSTnode *root)
 {
     if(!root)
@@ -233,7 +246,7 @@ int main()
     int a, data;
     do
     {
-        printf("Enter\n1 to add node\n2 for preOrder traversal\n3 for inOrder traversal\n4 for postOrder traversal\n5 for search\n6 for smallest element\n7 for largest element\n8 for delete\n9 for number of nodes\n10 for sum of nodes\n11 for depth\n12 for number of leaf node\n13 for number of non-leaf node\n14 for Checking BST\n0 to exit\n");
+        printf("Enter\n1 to add node\n2 for preOrder traversal\n3 for inOrder traversal\n4 for postOrder traversal\n5 for search\n6 for smallest element\n7 for largest element\n8 for delete\n9 for number of nodes\n10 for sum of nodes\n11 for depth\n12 for number of leaf node\n13 for number of non-leaf node\n14 for Checking BST\n15 for nodes at kth level\n0 to exit\n");
         scanf("%d", &a);
         switch (a)
         {
@@ -293,6 +306,12 @@ int main()
                 printf("This is BST!\n");
             else
                 printf("Not a BST!\n");
+            break;
+        case 15:
+            printf("Enter the level: ");
+            scanf("%d", &data);
+            nodesAtKthLevel(root, data);
+            printf("\n");
             break;
         default:
             break;

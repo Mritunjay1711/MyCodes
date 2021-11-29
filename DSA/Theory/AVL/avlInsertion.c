@@ -52,7 +52,7 @@ node *leftRotate(node *x)
     return y;
 }
 
-node *rightRotation(node *y)
+node *rightRotate(node *y)
 {
     node *x = y->left;
     node *xr = x->right;
@@ -66,8 +66,94 @@ node *rightRotation(node *y)
     return x;
 }
 
+
+node *insert(node *root, int key)
+{
+    if(root == NULL)
+    {
+        return createNode(key);
+    }
+
+    if(key < root->data)
+        root->left = insert(root->left, key);
+    else if(key > root->data)
+        root->right = insert(root->right, key);
+
+    root->height = max(getHeight(root->left), getHeight(root->right)) + 1;
+
+    int bf = getBalanceFactor(root);
+    
+    //Left left case
+    if(bf > 1 && key < root->left->data)
+        return rightRotate(root);
+    
+    // Right Right case
+    if(bf < -1 && key > root->right->data)
+        return leftRotate(root);
+
+    // Left Right case
+    if(bf > 1 && key > root->left->data)
+    {
+        root->left = leftRotate(root->left);
+        return rightRotate(root);
+    }
+
+    // Right left case
+    if(bf < -1 && key < root->right->data)
+    {
+        root->right = rightRotate(root->right);
+        return leftRotate(root);
+    }
+    return root;
+}
+
+void inOrder(node *root)
+{
+    if(!root)
+        return;
+    inOrder(root->left);
+    printf("%d ", root->data);
+    inOrder(root->right);
+}
+
+void preOrder(node *root)
+{
+    if(!root)
+        return;
+    
+    printf("%d ", root->data);
+    preOrder(root->left);
+    preOrder(root->right);
+}
+
 int main()
 {
+    node *root = NULL;
+    int data, a;
+    do
+    {
+        printf("Enter\n1 to insert\n2 for Inorder traversal\n");
+        scanf("%d", &a);
+        switch (a)
+        {
+        case 1:
+            printf("Enter the data: ");
+            scanf("%d", &data);
+            root = insert(root, data);
+            printf("%d\n", root->data);
+            break;
+        case 2:
+            inOrder(root);
+            printf("\n");
+            break;
+        case 3:
+            preOrder(root);
+            printf("\n");
+            break;
+        default:
+            break;
+        }
+    } while (a);
     
     return 0;
 }
