@@ -60,8 +60,8 @@ node *rightRotate(node *y)
     x->right = y;
     y->left = xr;
 
-    x->height = max(getHeight(x->left), getHeight(x->right)) + 1;
     y->height = max(getHeight(y->left), getHeight(y->right)) + 1;
+    x->height = max(getHeight(x->left), getHeight(x->right)) + 1;
 
     return x;
 }
@@ -107,6 +107,90 @@ node *insert(node *root, int key)
     return root;
 }
 
+node *inSuccessor(node *root)
+{
+    while(root->left)
+    {
+        root = root->left;
+    }
+    return root;
+}
+
+node *delete (node *root, int key)
+{
+    if (root == NULL)
+    {
+        return root;
+    }
+    else if (key < root->data)
+    {
+        root->left = delete (root->left, key);
+    }
+    else if (key > root->data)
+    {
+        root->right = delete (root->right, key);
+    }
+    else
+    {
+        //case 1
+        if (root->left == NULL && root->right == NULL)
+        {
+            free(root);
+            root = NULL;
+            printf("%u\n", root);
+        }
+        //case 2
+        else if (root->left == NULL)
+        {
+            node *temp = root;
+            root = root->right;
+            free(temp);
+        }
+        else if (root->right == NULL)
+        {
+            node *temp = root;
+            root = root->left;
+            free(temp);
+        }
+        //case 3
+        else
+        {
+            node *temp = inSuccessor(root->right);
+            root->data = temp->data;
+            root->right = delete (root->right, temp->data);
+        }
+    }
+    if (root == NULL)
+        return root;
+    root->height = max(getHeight(root->left), getHeight(root->right)) + 1;
+
+    int bf = getBalanceFactor(root);
+    //Left left case
+    if(bf > 1 && getBalanceFactor(root->left) >= 0)
+        return rightRotate(root);
+    
+    //Right Right case
+    if(bf < -1 && getBalanceFactor(root->right) <= 0)
+        return leftRotate(root);
+
+    //Left Right case
+    if(bf > 1 && getBalanceFactor(root->left) < 0)
+    {
+        root->left = leftRotate(root->left);
+        return rightRotate(root);
+    }
+
+    //Right left case
+    if(bf < -1 && key < getBalanceFactor(root->right) > 0)
+    {
+        root->right = rightRotate(root->right);
+        return leftRotate(root);
+    }
+
+    return root;
+}
+
+
 void inOrder(node *root)
 {
     if(!root)
@@ -132,7 +216,7 @@ int main()
     int data, a;
     do
     {
-        printf("Enter\n1 to insert\n2 for Inorder traversal\n");
+        printf("Enter\n1 to insert\n2 for Inorder traversal\n3 for preorder\n4 for delete\n");
         scanf("%d", &a);
         switch (a)
         {
@@ -149,6 +233,12 @@ int main()
         case 3:
             preOrder(root);
             printf("\n");
+            break;
+        case 4:
+            printf("Enter the node to delete: ");
+            scanf("%d", &data);
+            root = delete(root, data);
+            printf("Deleted! %d\n", data);
             break;
         default:
             break;
