@@ -39,8 +39,8 @@ void dequeue(PQueue **q)
     {
         if(s->next->prio < r->prio)
         {
-            t = s;
-            r = s->next;
+            t = s; // t is node before the lowest prio(which is need to be dequeued first)
+            r = s->next; // r is that particular node with the lowest priority
         }
         s = s->next;
     }
@@ -69,7 +69,7 @@ int main()
     enqueue(&f, &r, 56, 5);
     enqueue(&f, &r, 46, 4);
     // traversal(f);
-    // dequeue(&f);
+    dequeue(&f);
     // dequeue(&f);
     traversal(f);
     return 0;

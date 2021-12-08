@@ -181,7 +181,7 @@ node *delete (node *root, int key)
     }
 
     //Right left case
-    if(bf < -1 && key < getBalanceFactor(root->right) > 0)
+    if(bf < -1 && getBalanceFactor(root->right) > 0)
     {
         root->right = rightRotate(root->right);
         return leftRotate(root);
