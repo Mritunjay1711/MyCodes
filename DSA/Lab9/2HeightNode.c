@@ -58,10 +58,10 @@ int max(int a, int b)
 int heightTree(node *root)
 {
     if(!root)
-        return 0;
+        return -1;
     else
     {
-        return 1 + max(heightTree(root->left), heightTree(root->right));
+       return 1 + max(heightTree(root->left), heightTree(root->right));
     }
 }
 
@@ -70,7 +70,9 @@ int nodes(node *root)
     if(!root)
         return 0;
     else
+    {
         return 1 + nodes(root->left) + nodes(root->right);
+    }
 }
 
 int main()
@@ -99,7 +101,7 @@ int main()
         1  8  6   7
     */
    postOrder(r);
-   printf("\nHeight: %d", heightTree(r) - 1);
+   printf("\nHeight: %d", heightTree(r));
    printf("\nNumber of nodes: %d", nodes(r));
    printf("\nNumber of nodes in left subtree: %d", nodes(r->left));
    printf("\nNumber of nodes in right subtree: %d", nodes(r->right));

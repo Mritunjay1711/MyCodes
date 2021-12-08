@@ -152,7 +152,7 @@ int max(int a, int b)
 int depth(BSTnode *root)
 {
     if(!root)
-        return 0;
+        return -1;
     return 1 + max(depth(root->left), depth(root->right));
 }
 
