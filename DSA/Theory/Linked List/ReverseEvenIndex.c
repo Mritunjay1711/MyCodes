@@ -44,13 +44,39 @@ void displayReverse(struct node *head)
     }
 }
 
-void func(struct node *head)
+// Reverse elements at even index
+void reverseEvenInd(struct node *head)
 {
-    if(head == NULL)
+    struct node *odd = head, *even = NULL, *temp;
+    if(odd == NULL || odd->next == NULL || odd->next->next == NULL)
         return;
-    func(head->next);
-    printf("%d ", head->data);
-    func(head->next);
+    
+    // Making 2 separate list 
+    while(odd && odd->next)
+    {
+        temp = odd->next;
+        odd->next = temp->next;
+
+        temp->next = even;
+        even = temp;
+
+        odd = odd->next;
+    }
+    odd = head;
+
+
+    // Merging the lists
+    while(even)
+    {
+        temp = even->next;
+
+        even->next = odd->next;
+        odd->next = even;
+
+        even = temp; // point even to even list
+        odd = odd->next->next;// move odd to next odd
+    }
+
 }
 
 int main()
@@ -81,8 +107,8 @@ int main()
     // display(head);
     // printf("NULL\n");
     // displayReverse(head);
-    func(head);
-    printf("NULL\n");
+    reverseEvenInd(head);
+    traversal(head);
     return 0;
 }
 

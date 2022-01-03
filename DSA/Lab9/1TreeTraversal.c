@@ -73,6 +73,7 @@ node *peek(stack s)
     return s.arr[s.top];
 }
 
+//Iterative method
 void PreOrder(node *root){
     if(root == NULL)
         return;
@@ -93,6 +94,7 @@ void PreOrder(node *root){
     }
 }
 
+//Iterative method
 void InOrder(node *root)
 {
     if(root == NULL)
@@ -123,6 +125,7 @@ void InOrder(node *root)
     }
 }
 
+//Iterative method
 void PostOrder(node *root)
 {
     if(root == NULL)

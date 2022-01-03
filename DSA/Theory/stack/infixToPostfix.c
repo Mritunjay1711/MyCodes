@@ -135,7 +135,7 @@ char *infixToPostfix(char *infix)
 
 int main()
 {
-    char *eqn = (char*)malloc(19 * sizeof(char));
+    char *eqn = (char*)malloc(50 * sizeof(char));
     printf("Enter the eqn: ");
     gets(eqn);
     const char *s2 = {")"};

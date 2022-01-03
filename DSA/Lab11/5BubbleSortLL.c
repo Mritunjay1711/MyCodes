@@ -36,24 +36,28 @@ int countNode(node *head)
     return count;
 }
 
-void BubbleSort(node *head)
+void BubbleSort(node *head , int n)
 {
-    node *ptr;
+    node *ptr, *tmp = head;
     int temp;
-    while(head)
+    for(int i = 0; i < n - 1; i++)
     {
-        ptr = head->next;
-        while(ptr)
+        int swapped = 0;
+        ptr = tmp;
+        for(int j = 0; j < n - i - 1; j++)
         {
-            if(head->data > ptr->data)
+            if(ptr->data > ptr->next->data)
             {
-                temp = head->data;
-                head->data = ptr->data;
-                ptr->data = temp;
+                // printf("Wroking\n");
+                temp = ptr->data;
+                ptr->data = ptr->next->data;
+                ptr->next->data = temp;
+                swapped = 1;
             }
             ptr = ptr->next;
         }
-        head = head->next;
+        if(!swapped)
+            break;
     }
 }
 
@@ -84,9 +88,10 @@ int main()
         a--;
     }while(a - 1);
 
+    int n = countNode(head);
     printf("List before sorting: ");
     traversal(head);
-    BubbleSort(head);
+    BubbleSort(head, n);
     printf("List after sorting: ");
     traversal(head);
     return 0;

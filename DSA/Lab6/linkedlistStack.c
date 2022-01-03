@@ -22,7 +22,6 @@ void push(stack **q, int data)
 {
     if(isFull(*q))
     {
-        printf("Stack Overflow!\n");
         printf("Stack Overflow!, Cannot push %d in Stack.\n", data);
     }
     else if(isEmpty(*q))
