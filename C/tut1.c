@@ -4,7 +4,7 @@
 char *reverse(char *str);
 
 int main(){
-    char str[]="Akshat";
+    char str[]="Adarsh";
     printf("The reversed string is: %s", reverse(str));
     return 0;
 }
