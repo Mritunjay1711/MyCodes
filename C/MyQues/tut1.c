@@ -1,4 +1,4 @@
-#include<Stdio.h>
+#include <Stdio.h>
 
 // int main(){
 
@@ -33,3 +33,41 @@
 //     int x = 6;
 //     return 0;
 // }
+
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+
+    int i;
+    int *p = (int *)malloc(5 * sizeof(int));
+
+    for (i = 0; i < 5; i++)
+        *(p + i) = i;
+
+    
+    for(i = 0; i < 5; i++)
+        printf("%d ", p[i]);
+    printf("\n");
+    printf("%d \n", *p++);
+    for(i = 0; i < 5; i++)
+        printf("%d ", p[i]);
+    printf("\n");
+    printf("%d \n", (*p)++);
+    for(i = 0; i < 5; i++)
+        printf("%d ", p[i]);
+    printf("\n");
+    printf("%d \n", *p);
+    for(i = 0; i < 5; i++)
+        printf("%d ", p[i]);
+    printf("\n");
+    printf("%d \n", *++p);
+    for(i = 0; i < 5; i++)
+        printf("%d ", p[i]);
+    printf("\n");
+    printf("%d \n", ++*p);
+    printf("\n");
+    for(i = 0; i < 5; i++)
+        printf("%d ", p[i]);
+    return 0;
+}
