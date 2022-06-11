@@ -1,3 +1,14 @@
+/*
+Q2) Implement Round Robin Scheduling. TQ = N where N is last digit of your roll. Find Av TAT and Av WT and Number of times context switching took place. Comment what is the optimal value of TQ. Should it be large or small, justify your claim.
+PID    AT   BT
+P1      0      5
+P2      1      4
+P3      2      2
+P4      4      1
+
+Mritunjay Kumar 2006226
+*/
+
 #include<stdio.h>
 #include<stdlib.h>
 
@@ -138,7 +149,7 @@ int main()
     for(int i = 0; i < 4; i++)
     {
         tat[i] = ct[i] - arr[i].at;
-        wt[i] = tat[i] - bt[i];
+        wt[i] = tat[i] - arr[i].bt;
         rt[i] = leftEntry[i] - arr[i].at;
     }
 

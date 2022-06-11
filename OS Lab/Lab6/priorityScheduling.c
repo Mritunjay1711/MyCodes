@@ -1,3 +1,16 @@
+/*
+Q1) Implement the Priority Scheduling. N is last digit of your roll number. Find Av TAT and Av WT and Number of times context switching took place. 
+PID  Priority  AT BT
+P1      2          0    4
+P2      3          1    3
+P3      4          2    1
+P4      N          3    5
+P4      5          4     N -1
+
+Mritunjay Kumar 2006226
+*/
+
+
 #include<stdio.h>
 #include<stdlib.h>
 
@@ -234,7 +247,7 @@ int main()
                 count++;
             }
             //If the process is interrupted in between by other process then it is checked to continue or give chance to other process here
-            if(min.bt > at[k] && k < 5 && temp <= at[4])
+            if(min.bt > (at[k] - at[k - 1]) && k < 5 && temp <= at[4])
             {
                 // printf("%d**\n", k);
                 if(leftEntry[min.ind] == -1)
@@ -282,7 +295,7 @@ int main()
                 count++;
             }
             //If the process is interrupted in between by other process then it is checked to continue or give chance to other process here
-            if(min.bt > at[k] && k < 5 && temp <= at[4])
+            if(min.bt > (at[k] - at[k - 1]) && k < 5 && temp <= at[4])
             {
                 // printf("%d**\n", k);
                 if(leftEntry[min.ind] == -1)
