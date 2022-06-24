@@ -20,7 +20,7 @@ int merge(int A[], int B[], int low, int mid, int high){
     int i = low, j = mid+1, k = low;
     int inversionCount = 0;
     while(i <= mid && j <= high){
-        if(A[i] < A[j])
+        if(A[i] <= A[j])
         {
             B[k] = A[i];
             k++;
@@ -44,6 +44,9 @@ int merge(int A[], int B[], int low, int mid, int high){
         j++;
     }
     // cout << "Returning*" << endl;
+    for(int l = low; l <= high; l++){
+        A[l] = B[l];
+    }
     return inversionCount;
 }
 
@@ -62,7 +65,7 @@ int mergeSort(int A[], int B[], int low, int high){
 }
 
 int main(){
-    int A[] = {1, 9, 6, 4, 5};
+    int A[] = {2, 4, 1, 3, 5};
     int size = sizeof(A)/sizeof(int);
     int B[size];
     int low = 0, high = size - 1, ans;
