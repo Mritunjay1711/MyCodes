@@ -1,6 +1,8 @@
 # Similar to structures
 # Dictionary stores two value pairs
 
+
+
 myDict = {
     "Adarsh": "Nonsense",
     "Mj": "A Coder",
