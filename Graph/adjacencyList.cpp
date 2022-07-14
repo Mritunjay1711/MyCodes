@@ -48,6 +48,23 @@ public:
        cout << endl;
     }
 
+    void dfsHelper(int node, bool *visited){
+        visited[node] = true;
+        //Make dfs call on all unvisited neighbours
+        cout << node << ", ";
+        for(int nbr:l[node]){
+            if(!visited[nbr]){
+                dfsHelper(nbr, visited);
+            }
+        }
+        return;
+    }
+
+    void dfs(int source){
+        bool *visited = new bool[V]{0};
+        dfsHelper(source, visited);
+    }
+
 };
 
 int main(){
@@ -63,6 +80,8 @@ int main(){
 
     g.printAdjList();
     
-    g.bfs(0);
+    // g.bfs(0);
+
+    g.dfs(0);
     return 0;
 }
