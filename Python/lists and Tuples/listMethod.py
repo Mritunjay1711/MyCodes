@@ -7,5 +7,4 @@ l1.append(8)  #This will add the element at the end
 l1.insert(2, 200) #This will insert the element at desired position/index
 l1.pop(2)  #Remove element at index 2
 l1.remove(5) #Removes the element given in the bracket
-
 print(l1)
